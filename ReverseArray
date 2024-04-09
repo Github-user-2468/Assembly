@@ -1,0 +1,32 @@
+;Program: Reverse an Array
+;Programmer: Karigan Stewart
+;Date: 02-25-24
+;Purpose: This elements swaps elements of an array into a reverse order
+;-----------------------------------------------------------------------------------------
+
+ExitProcess proto
+
+.data
+decimalArray DWORD 1, 2, 3, 4, 5, 6, 7, 8      ;the array
+.code
+main proc
+	mov esi, OFFSET decimalArray      ; Initialize source to the beginning of the array
+    mov edi, OFFSET decimalArray      ; Initialize destination to the beginning of the array
+    add edi, SIZEOF decimalArray      ; Move destination to the end of the array
+    sub edi, TYPE decimalArray        ; Adjust destination to point to the last value
+     
+    mov ecx, LENGTHOF decimalArray ; Set the loop counter to the number of values in the array
+
+L1:
+    mov eax, [esi]                ; Input the value at the source index into EAX
+    xchg eax, [edi]               ; Swaps the values in EAX and the destination 
+    mov [esi], eax                ; Store the swapped value back at the source 
+
+    add esi, TYPE decimalArray    ; Add to move to the NEXT element in the array
+    sub edi, TYPE decimalArray    ; Sub to move to the PREVIOUS element in the array
+    loop L1                        ; Repeat the loop until ecx is zero
+
+	call  ExitProcess
+
+main endp
+end
