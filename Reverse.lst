@@ -1,0 +1,66 @@
+Microsoft (R) Macro Assembler (x64) Version 14.29.30154.0   02/25/24 16:45:51
+AddTwoSum_64.asm					     Page 1 - 1
+
+
+				;Program: Reverse an Array
+				;Programmer: Karigan Stewart
+				;Date: 02-25-24
+				;Purpose: This elements swaps elements of an array into a reverse order
+				;-----------------------------------------------------------------------------------------
+
+				ExitProcess proto
+
+ 00000000			.data
+ 00000000 00000001		decimalArray DWORD 1, 2, 3, 4, 5, 6, 7, 8      ;the array
+	   00000002
+	   00000003
+	   00000004
+	   00000005
+	   00000006
+	   00000007
+	   00000008
+ 00000000			.code
+ 00000000			main proc
+ 00000000  BE 00000000 R		mov esi, OFFSET decimalArray      ; Initialize source to the beginning of the array
+ 00000005  BF 00000000 R	    mov edi, OFFSET decimalArray      ; Initialize destination to the beginning of the array
+ 0000000A  83 C7 20		    add edi, SIZEOF decimalArray      ; Move destination to the end of the array
+ 0000000D  83 EF 04		    sub edi, TYPE decimalArray        ; Adjust destination to point to the last value
+				     
+ 00000010  B9 00000008		    mov ecx, LENGTHOF decimalArray ; Set the loop counter to the number of values in the array
+
+ 00000015			L1:
+ 00000015  67& 8B 06		    mov eax, [esi]                ; Input the value at the source index into EAX
+ 00000018  67& 87 07		    xchg eax, [edi]               ; Swaps the values in EAX and the destination 
+ 0000001B  67& 89 06		    mov [esi], eax                ; Store the swapped value back at the source 
+
+ 0000001E  83 C6 04		    add esi, TYPE decimalArray    ; Add to move to the NEXT element in the array
+ 00000021  83 EF 04		    sub edi, TYPE decimalArray    ; Sub to move to the PREVIOUS element in the array
+ 00000024  E2 EF		    loop L1                        ; Repeat the loop until ecx is zero
+
+ 00000026  E8 00000000 E		call  ExitProcess
+
+ 0000002B			main endp
+				end
+Microsoft (R) Macro Assembler (x64) Version 14.29.30154.0   02/25/24 16:45:51
+AddTwoSum_64.asm					     Symbols 2 - 1
+
+
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+ExitProcess  . . . . . . . . . .	P 	 00000000 Length= 00000000 External
+main . . . . . . . . . . . . . .	P 	 00000000 _TEXT	Length= 0000002B Public
+  L1 . . . . . . . . . . . . . .	L 	 00000015 _TEXT	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+decimalArray . . . . . . . . . .	DWord	 00000000 _DATA	
+
+	   0 Warnings
+	   0 Errors
