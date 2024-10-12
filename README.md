@@ -1,2 +1,3 @@
 # Assembly
-These are projects I have created in Motlow Assembly and Computer Organization
+This are the projects I have completed through my Motlow Computer Assembly and Organization course
+
